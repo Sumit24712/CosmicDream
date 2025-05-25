@@ -8,10 +8,29 @@
 </head>
 <body>
   <main>
-    <h1>🌌 CosmicDream</h1>
-    <p>Journal Your Dreams & Decode Their Meaning</p>
+   <main>
+  <h1>🌌 CosmicDream</h1>
+  <p>Journal Your Dreams & Decode Their Meaning</p>
+
+  <form id="dreamForm">
+    <input type="text" id="title" placeholder="Dream Title" required />
+    <textarea id="dreamText" placeholder="Describe your dream..." required></textarea>
     
-    <button id="start">Start Dream Journal</button>
+    <select id="mood">
+      <option value="">Mood</option>
+      <option value="Peaceful">😌 Peaceful</option>
+      <option value="Anxious">😟 Anxious</option>
+      <option value="Excited">😃 Excited</option>
+      <option value="Confused">😕 Confused</option>
+      <option value="Lucid">🌙 Lucid</option>
+    </select>
+
+    <button type="submit">Save Dream</button>
+  </form>
+
+  <div id="confirmation" style="display:none;">✅ Dream saved!</div>
+</main>
+
   </main>
 
   <script src="firebase-config.js"></script>
