@@ -56,3 +56,35 @@ form.addEventListener('submit', async (e) => {
     console.error("Firebase Error:", err);
   }
 });
+import { getDocs } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+async function loadDreams() {
+  const dreamList = document.getElementById('dreamList');
+  dreamList.innerHTML = 'Loading dreams...';
+
+  try {
+    const querySnapshot = await getDocs(collection(db, "dreams"));
+    let html = "";
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      html += `
+        <div class="dream-entry">
+          <h3>${data.title}</h3>
+          <p><strong>Mood:</strong> ${data.mood}</p>
+          <p>${data.dream}</p>
+          <p><em>${new Date(data.date).toLocaleString()}</em></p>
+        </div>
+      `;
+    });
+
+    dreamList.innerHTML = html || "No dreams found.";
+  } catch (error) {
+    dreamList.innerHTML = "Failed to load dreams.";
+    console.error("Error fetching dreams:", error);
+  }
+}
+
+// Call it once when page loads
+loadDreams();
+
