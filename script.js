@@ -33,7 +33,6 @@ form.addEventListener('submit', async (e) => {
 });
 
 async function loadDreams() {
-  const dreamList = document.getElementById('dreamList');
   dreamList.innerHTML = 'Loading dreams...';
 
   try {
@@ -42,17 +41,45 @@ async function loadDreams() {
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
+      const id = doc.id;
+
       html += `
         <div class="dream-entry">
           <h3>${data.title}</h3>
           <p><strong>Mood:</strong> ${data.mood}</p>
           <p>${data.dream}</p>
           <p><em>${new Date(data.date).toLocaleString()}</em></p>
+          <button class="interpret-btn" data-id="${id}" data-dream="${encodeURIComponent(data.dream)}">🔍 Interpret</button>
+          <div class="interpretation" id="interpret-${id}"></div>
         </div>
       `;
     });
 
     dreamList.innerHTML = html || "No dreams found.";
+
+    // Attach event listeners
+    document.querySelectorAll('.interpret-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const dreamText = decodeURIComponent(btn.getAttribute('data-dream'));
+        const outputDiv = document.getElementById(`interpret-${btn.getAttribute('data-id')}`);
+        outputDiv.innerHTML = '🔮 Interpreting your dream...';
+
+        try {
+          const response = await fetch('/api/interpret', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dreamText })
+          });
+
+          const data = await response.json();
+          outputDiv.innerHTML = `<p>${data.interpretation}</p>`;
+        } catch (err) {
+          outputDiv.innerHTML = '❌ Failed to interpret dream.';
+          console.error(err);
+        }
+      });
+    });
+
   } catch (error) {
     dreamList.innerHTML = "Failed to load dreams.";
     console.error("Error fetching dreams:", error);
