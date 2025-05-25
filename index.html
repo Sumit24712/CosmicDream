@@ -8,61 +8,36 @@
 </head>
 <body>
   <main>
-   <main>
-  <h1>🌌 CosmicDream</h1>
-  <p>Journal Your Dreams & Decode Their Meaning</p>
+    <h1>🌌 CosmicDream</h1>
+    <p>Journal Your Dreams & Decode Their Meaning</p>
 
-  <form id="dreamForm">
-    <input type="text" id="title" placeholder="Dream Title" required />
-    <textarea id="dreamText" placeholder="Describe your dream..." required></textarea>
-    
-    <select id="mood">
-      <option value="">Mood</option>
-      <option value="Peaceful">😌 Peaceful</option>
-      <option value="Anxious">😟 Anxious</option>
-      <option value="Excited">😃 Excited</option>
-      <option value="Confused">😕 Confused</option>
-      <option value="Lucid">🌙 Lucid</option>
-    </select>
+    <form id="dreamForm">
+      <input type="text" id="title" placeholder="Dream Title" required />
+      <textarea id="dreamText" placeholder="Describe your dream..." required></textarea>
+      
+      <select id="mood">
+        <option value="">Mood</option>
+        <option value="Peaceful">😌 Peaceful</option>
+        <option value="Anxious">😟 Anxious</option>
+        <option value="Excited">😃 Excited</option>
+        <option value="Confused">😕 Confused</option>
+        <option value="Lucid">🌙 Lucid</option>
+      </select>
 
-    <button type="submit">Save Dream</button>
-  </form>
-  <hr style="margin: 40px 0; border: none; border-top: 1px solid #444;" />
+      <button type="submit">Save Dream</button>
+    </form>
 
-<section id="dreamArchive">
-  <h2>📖 Dream Archive</h2>
-  <div id="dreamList">Loading dreams...</div>
-</section>
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid #444;" />
 
-  <div id="confirmation" style="display:none;">✅ Dream saved!</div>
-</main>
+    <section id="dreamArchive">
+      <h2>📖 Dream Archive</h2>
+      <div id="dreamList">Loading dreams...</div>
+    </section>
 
+    <div id="confirmation" style="display:none;">✅ Dream saved!</div>
   </main>
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-  import { getAnalytics, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyA8XmdLwGRxPGctJz20V1tPUBngV45ljhs",
-    authDomain: "cosmicdream-web.firebaseapp.com",
-    projectId: "cosmicdream-web",
-    storageBucket: "cosmicdream-web.firebasestorage.app",
-    messagingSenderId: "1034874028656",
-    appId: "1:1034874028656:web:5dea95a5e24d3ebb0c2ab5",
-    measurementId: "G-H574YRJ5DX"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
-  <script src="firebase-config.js"></script>
-  <script src="script.js"></script>
+  <!-- LOAD SCRIPT FILES PROPERLY -->
+  <script type="module" src="./script.js"></script>
 </body>
 </html>
